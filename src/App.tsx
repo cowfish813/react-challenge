@@ -7,9 +7,11 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 // api docs: https://randomuser.me/documentation
 
+// TO DO:
+// add sorting to registration date
+
 function App() {
   const [filter, setFilter] = useState<any>()
-  const [sortBy, setSortBy] = useState<string>("state")
   const [sortDirection, setSortDirection] = useState<string>("asc")
   const [data, setData] = useState<any>()
   const [filteredData, setFilteredData] = useState<any>([])
@@ -28,7 +30,7 @@ function App() {
     let filteredData = data
 
     if (!!filter){
-      filteredData = filteredData.filter(d => d.name.first.includes(filter) || d.name.last.includes(filter))
+      filteredData = filteredData.filter(d => d.name.first.toLowerCase().includes(filter.toLowerCase()) || d.name.last.toLowerCase().includes(filter.toLowerCase()))
     }
 
     return filteredData
@@ -40,14 +42,15 @@ function App() {
   }, [filter])
 
   const renderSortingIcon = () => {
-    if (sortDirection === "asc") return <ArrowUpwardIcon />
-    if (sortDirection === "desc") return <ArrowDownwardIcon />
+    if (sortDirection === "asc") return <ArrowDownwardIcon fontSize={"small"}/>
+    if (sortDirection === "desc") return <ArrowUpwardIcon fontSize={"small"}/>
     return null
   }
 
   const renderRows = () => {
+    const rows = []
     for (let i = 0; i < filteredData?.length; i++){
-      return (
+      rows.push(
         <tr>
           <td>{filteredData[i].name.first} {filteredData[i].name.last}</td>
           <td>{filteredData[i].login.username}</td>
@@ -55,13 +58,16 @@ function App() {
         </tr>
       )
     }
+    return rows
   }
 
   return (
     <div className="App">
       <h1>User info</h1>
-      <label>Search by name:</label>
-      <input type="text" id="search" name="search" onChange={(e: any) => setFilter(e.target.value)}/>
+      <div>
+        <label>Search by name:</label>
+        <input type="text" id="search" name="search" onChange={(e: any) => setFilter(e.target.value)}/>
+      </div>
       <span>
         {!filteredData && (
           !filter ? ("Error") : ("No results")
@@ -72,6 +78,12 @@ function App() {
           <tr>
             <th>
               Name
+            </th>
+            <th>
+              Username
+            </th>
+            <th>
+              Registration Date
               <span
                 onClick={() => {
                   const newDirection = sortDirection === "asc" ? "desc" : "asc"
@@ -80,12 +92,6 @@ function App() {
               >
               {renderSortingIcon()}
               </span>
-            </th>
-            <th>
-              Username
-            </th>
-            <th>
-              Registration Date
             </th>
           </tr>
         </thead>
