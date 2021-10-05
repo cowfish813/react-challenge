@@ -2,6 +2,9 @@ import {useState, useEffect} from "react"
 import axios from "axios"
 import './App.css';
 
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+
 // api docs: https://randomuser.me/documentation
 
 function App() {
@@ -37,8 +40,8 @@ function App() {
   }, [filter])
 
   const renderSortingIcon = () => {
-    if (sortDirection === "asc") return "asc"
-    if (sortDirection === "desc") return "desc"
+    if (sortDirection === "asc") return <ArrowUpwardIcon />
+    if (sortDirection === "desc") return <ArrowDownwardIcon />
     return null
   }
 
