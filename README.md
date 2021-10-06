@@ -1,3 +1,21 @@
+# OrbitalRX Coding Challenge
+
+Welcome! This challenge should take you about an hour. 
+
+We installed a couple packages to get you started, so you should have to run `npm i` to install everything before getting started. For instructions on how to start your react server locally, see the `Create React App` docs below.
+
+- For the challenge, check out `App.tsx`. At the top of the file are a few `TO DO`s. Our hope is for you to get through the first two, or at least one of them and a dent in the other, in an hour. If you have time, check out the `BONUS` etc TO DO's. 
+- Feel free to install any packages you like to complete the challenge. If you do, please just let us know below what they were and give us a quick insight--a sentence or two--into why you chose them. 
+- Include any other feedback you might have here in the README--if it took you longer than expected, if something wasn't clear. 
+
+# Packages Installed (optional)
+
+# Feedback (optional)
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

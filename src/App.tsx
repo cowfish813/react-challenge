@@ -8,7 +8,14 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 // api docs: https://randomuser.me/documentation
 
 // TO DO:
-// add sorting to registration date
+// Implement sorting by date
+// Refactor filtering
+
+// BONUS TO DO:
+// Refactor to make UI more reusable elsewhere in app
+
+// AND IF THERE'S STILL TIME...
+// How can you improve the UI? How can you get that sorting arrow looking right?
 
 function App() {
   const [filter, setFilter] = useState<any>()
