@@ -18,10 +18,10 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 // How can you improve the UI? How can you get that sorting arrow looking right?
 
 function App() {
-  const [filter, setFilter] = useState<any>()
-  const [sortDirection, setSortDirection] = useState<string>("asc")
-  const [data, setData] = useState<any>()
-  const [filteredData, setFilteredData] = useState<any>([])
+  const [filter, setFilter] = useState()
+  const [sortDirection, setSortDirection] = useState("asc")
+  const [data, setData] = useState()
+  const [filteredData, setFilteredData] = useState([])
 
   useEffect(() => {
     axios.get(`https://randomuser.me/api/?results=50`)
@@ -33,7 +33,7 @@ function App() {
       .catch(error => console.log(error))
   }, [])
 
-  const filterData = (data: Array<any>) => {
+  const filterData = (data) => {
     let filteredData = data
 
     if (!!filter){
@@ -46,7 +46,7 @@ function App() {
   useEffect(() => {
     const filtered = filterData(data)
     setFilteredData(filtered)
-  }, [filter])
+  }, [data, filter])
 
   const renderSortingIcon = () => {
     if (sortDirection === "asc") return <ArrowDownwardIcon fontSize={"small"}/>
@@ -73,7 +73,7 @@ function App() {
       <h1>User info</h1>
       <div>
         <label>Search by name:</label>
-        <input type="text" id="search" name="search" onChange={(e: any) => setFilter(e.target.value)}/>
+        <input type="text" id="search" name="search" onChange={e => setFilter(e.target.value)}/>
       </div>
       <span>
         {!filteredData && (
