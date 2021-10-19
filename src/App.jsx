@@ -30,13 +30,6 @@ function App() {
       .then(response => response.data)
       .then(d => {
         const {results} = d
-
-        if (sortDirection === "asc") {
-          results.sort((a, b) => (new Date(a.registered.date) - new Date(b.registered.date)));
-        } else if (sortDirection === "desc") {
-          results.sort((a, b) => (new Date(b.registered.date) - new Date(a.registered.date)));
-        };
-
         setData(results)
       })
       .catch(error => console.log(error))
