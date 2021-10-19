@@ -23,6 +23,8 @@ function App() {
   const [data, setData] = useState()
   const [filteredData, setFilteredData] = useState([])
 
+  const [component, setComponent] = useState(<ArrowDownwardIcon fontSize={"small"}/>)
+
   useEffect(() => {
     axios.get(`https://randomuser.me/api/?results=50`)
       .then(response => response.data)
@@ -57,18 +59,14 @@ function App() {
 
     if (sortDirection === "asc") {
       filtered.sort((a, b) => (new Date(a.registered.date) - new Date(b.registered.date)));
+      setComponent(<ArrowDownwardIcon fontSize={"small"} />)
     } else if (sortDirection === "desc") {
       filtered.sort((a, b) => (new Date(b.registered.date) - new Date(a.registered.date)));
+      setComponent(<ArrowUpwardIcon fontSize={"small"} />)
     }
     
     setFilteredData(filtered)
   }, [data, filter, sortDirection])
-
-  const renderSortingIcon = () => {
-    if (sortDirection === "asc") return <ArrowDownwardIcon fontSize={"small"}/>
-    if (sortDirection === "desc") return <ArrowUpwardIcon fontSize={"small"}/>
-    return null
-  }
 
   const renderRows = () => {
     const rows = []
@@ -114,7 +112,7 @@ function App() {
                   setSortDirection(newDirection)
                 }}
               >
-              {renderSortingIcon()}
+              {component}
               </span>
             </th>
           </tr>
