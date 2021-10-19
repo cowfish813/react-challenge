@@ -8,7 +8,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 // api docs: https://randomuser.me/documentation
 
 // TO DO:
-// Implement sorting by date
+// Implement sorting by date //
 // Refactor filtering
 
 // BONUS TO DO:
@@ -30,6 +30,13 @@ function App() {
       .then(response => response.data)
       .then(d => {
         const {results} = d
+
+        if (sortDirection === "asc") {
+          results.sort((a, b) => (new Date(a.registered.date) - new Date(b.registered.date)))
+        } else if (sortDirection === "desc") {
+          results.sort((a, b) => (new Date(b.registered.date) - new Date(a.registered.date)))
+        };
+
         setData(results)
       })
       .catch(error => console.log(error))
@@ -37,11 +44,18 @@ function App() {
 
   const filterData = (data) => {
     let filteredData = data
+
+    console.log(filter);
+
     if (!!filter){
       filteredData = filteredData.filter(d => d.name.first.toLowerCase().includes(filter.toLowerCase()) || d.name.last.toLowerCase().includes(filter.toLowerCase()))
     }
 
     return filteredData
+  }
+
+  const handleFilter = (e) => {
+    setFilter(e.target.value);
   }
 
   useEffect(() => {
@@ -73,10 +87,8 @@ function App() {
         </tr>
       )
     }
-    // setSortedRow(rows);
 
     return rows;
-
   }
 
   return (
@@ -84,7 +96,7 @@ function App() {
       <h1>User info</h1>
       <div>
         <label>Search by name:</label>
-        <input type="text" id="search" name="search" onChange={e => setFilter(e.target.value)}/>
+        <input type="text" id="search" name="search" onChange={handleFilter}/>
       </div>
       <span>
         {!filteredData && (
