@@ -36,12 +36,11 @@ function App() {
   }, [])
 
   const filterData = (data) => {
-    let filteredData = data
     if (!!filter){
       const newFilter = filteredData.filter(d => d.name.first.toLowerCase().includes(filter.toLowerCase()) || d.name.last.toLowerCase().includes(filter.toLowerCase()));
       return newFilter;
     }
-    return filteredData
+    return data
   }
 
   const handleFilter = (e) => {
