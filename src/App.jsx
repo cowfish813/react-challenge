@@ -23,6 +23,8 @@ function App() {
   const [data, setData] = useState()
   const [filteredData, setFilteredData] = useState([])
 
+  const [sortedRow, setSortedRow] = useState([]);
+
   useEffect(() => {
     axios.get(`https://randomuser.me/api/?results=50`)
       .then(response => response.data)
@@ -54,6 +56,20 @@ function App() {
     return null
   }
 
+  useEffect(() => {
+    if (sortDirection === "asc") {
+      filteredData.sort( (a, b) => (new Date(a.registered.date) - new Date(b.registered.date)))
+    } else if (sortDirection === "desc") {
+      filteredData.sort((a, b) => (new Date(b.registered.date) - new Date(a.registered.date)))
+    }
+  }, [sortDirection])
+
+  console.log(
+    // data, 
+    // filteredData, 
+    // filter
+    );
+
   const renderRows = () => {
     const rows = []
     for (let i = 0; i < filteredData?.length; i++){
@@ -65,6 +81,7 @@ function App() {
         </tr>
       )
     }
+
     return rows
   }
 
