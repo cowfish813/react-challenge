@@ -5,6 +5,8 @@ import './App.css';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
+import renderRows from './util/utility.js'
+
 // api docs: https://randomuser.me/documentation
 
 // TO DO:
@@ -61,16 +63,15 @@ function App() {
     setFilteredData(filtered)
   }, [data, filter, sortDirection])
 
-  const renderRows = () => {
-    const rows = []
-    for (let i = 0; i < filteredData?.length; i++){
-      rows.push(
-        <tr>
-          <td>{filteredData[i].name.first} {filteredData[i].name.last}</td>
-          <td>{filteredData[i].login.username}</td>
-          <td>{filteredData[i].registered.date}</td>
-        </tr>
-      )
+  const renderTable = (arr) => {
+    const rows = [];
+
+    for (let i = 0; i < arr?.length; i++) {
+      const first = arr[i].name.first;
+      const last = arr[i].name.last;
+      const username = arr[i].login.username;
+      const date = arr[i].registered.date;
+      renderRows(rows, first, last, username, date);
     }
 
     return rows;
@@ -111,7 +112,7 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {renderRows()}
+          {renderTable(filteredData)}
         </tbody>
       </table>
     </div>
