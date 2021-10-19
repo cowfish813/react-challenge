@@ -14,5 +14,6 @@ We installed a couple packages to get you started, so you should run `npm i` to 
 ## Packages Installed (optional)
 
 ## Feedback (optional)
-I was a little confused on refactoring filter until i realized the same variable name was used
+- I was a little confused on refactoring filter until i realized the same variable name was used
+
 

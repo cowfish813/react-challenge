@@ -1,4 +1,4 @@
-const renderRows = (returnArr, first, last, username, date) => {
+const renderThreeRows = (returnArr, first, last, username, date) => {
     returnArr.push(
         <tr>
             <td>{first} {last}</td>
@@ -8,4 +8,4 @@ const renderRows = (returnArr, first, last, username, date) => {
     )
 }
 
-export default renderRows;
+export default renderThreeRows;
