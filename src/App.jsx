@@ -37,7 +37,6 @@ function App() {
 
   const filterData = (data) => {
     let filteredData = data
-
     if (!!filter){
       filteredData = filteredData.filter(d => d.name.first.toLowerCase().includes(filter.toLowerCase()) || d.name.last.toLowerCase().includes(filter.toLowerCase()))
     }
@@ -46,29 +45,22 @@ function App() {
   }
 
   useEffect(() => {
-    const filtered = filterData(data)
+    const filtered = filterData(data) || [];
+
+    if (sortDirection === "asc") {
+      filtered.sort((a, b) => (new Date(a.registered.date) - new Date(b.registered.date)))
+    } else if (sortDirection === "desc") {
+      filtered.sort((a, b) => (new Date(b.registered.date) - new Date(a.registered.date)))
+    }
+    
     setFilteredData(filtered)
-  }, [data, filter])
+  }, [data, filter, sortDirection])
 
   const renderSortingIcon = () => {
     if (sortDirection === "asc") return <ArrowDownwardIcon fontSize={"small"}/>
     if (sortDirection === "desc") return <ArrowUpwardIcon fontSize={"small"}/>
     return null
   }
-
-  useEffect(() => {
-    if (sortDirection === "asc") {
-      filteredData.sort( (a, b) => (new Date(a.registered.date) - new Date(b.registered.date)))
-    } else if (sortDirection === "desc") {
-      filteredData.sort((a, b) => (new Date(b.registered.date) - new Date(a.registered.date)))
-    }
-  }, [sortDirection])
-
-  console.log(
-    // data, 
-    // filteredData, 
-    // filter
-    );
 
   const renderRows = () => {
     const rows = []
@@ -81,8 +73,10 @@ function App() {
         </tr>
       )
     }
+    // setSortedRow(rows);
 
-    return rows
+    return rows;
+
   }
 
   return (
