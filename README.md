@@ -18,5 +18,6 @@ We installed a couple packages to get you started, so you should run `npm i` to 
 - I should've thoroughly read all the directions first before jumping in, or at least come back to it because I realized a bit late that the arrow issue was a bonus separate from the date algo. fixing up the sorting and date arrow issue simultaneously took a bit of time. It was a fun process but time-wise very costly to me seeking perfection off the bat :'C
     Lesson Learned.
 
-- I noticed that I could see others work as well by looking at the number of forks, which could compromise the integrity of the challenge process
+- I noticed that I could see others work as well by looking at the number of forks, which could compromise the integrity of the challenge process.
+- 
 

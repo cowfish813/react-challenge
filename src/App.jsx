@@ -23,6 +23,7 @@ function App() {
   const [data, setData] = useState();
   const [filteredData, setFilteredData] = useState([]);
   const [component, setComponent] = useState(<ArrowDownwardIcon fontSize={"small"}/>);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     axios.get(`https://randomuser.me/api/?results=50`)
@@ -38,10 +39,20 @@ function App() {
     setFilter(e.target.value);
   }
 
-  const handleSortDirection = (e) => {
+  const handleSortDirection = () => {
     const newDirection = sortDirection === "asc" ? "desc" : "asc";
     setSortDirection(newDirection);
   }
+
+  useEffect(() => {
+    if (!filteredData && !filter) {
+      setError("Error");
+    } else if (filter && !filteredData) {
+      setError("No Results");
+    } else {
+      setError("");
+    }
+  }, [error])
 
   useEffect(() => {
     const filtered = filterData(data, filter) || [];
@@ -79,9 +90,7 @@ function App() {
         <input type="text" id="search" name="search" onChange={handleFilter}/>
       </div>
       <span>
-        {!filteredData && (
-          !filter ? ("Error") : ("No results")
-        )}
+        {error}
       </span>
       <table>
         <thead>
