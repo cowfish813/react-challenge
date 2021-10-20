@@ -6,7 +6,7 @@ export const renderThreeRows = (returnArr, first, last, username, date) => {
             <td>{date}</td>
         </tr>
     )
-}
+};
 
 export const filterData = (data, filter) => {
     if (!!filter) {
@@ -14,4 +14,4 @@ export const filterData = (data, filter) => {
         return newFilter;
     }
     return data;
-}
+};

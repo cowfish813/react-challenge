@@ -38,6 +38,11 @@ function App() {
     setFilter(e.target.value);
   }
 
+  const handleSortDirection = (e) => {
+    const newDirection = sortDirection === "asc" ? "desc" : "asc";
+    setSortDirection(newDirection);
+  }
+
   useEffect(() => {
     const filtered = filterData(data, filter) || [];
 
@@ -90,10 +95,7 @@ function App() {
             <th>
               Registration Date
               <span
-                onClick={() => {
-                  const newDirection = sortDirection === "asc" ? "desc" : "asc"
-                  setSortDirection(newDirection)
-                }}
+                onClick={handleSortDirection}
               >
               {component}
               </span>
@@ -106,6 +108,6 @@ function App() {
       </table>
     </div>
   );
-}
+};
 
 export default App;
