@@ -14,6 +14,7 @@ We installed a couple packages to get you started, so you should run `npm i` to 
 ## Packages Installed (optional)
 
 ## Feedback (optional)
-- I was a little confused on refactoring filter until i realized the same variable name was used
-
+- I was a little confused on refactoring filter as the same variable name was being reinitialized and happened to work. i kinda thought nothing of it until i thought "maybe it's a problem in the future"
+- I should've thoroughly read all the directions first before jumping in. fixing up the sorting and date arrow issue simultaneously took a bit of time. It was a fun rabbit hole but time-wise very costly :'C
+    Lesson Learned.
 
