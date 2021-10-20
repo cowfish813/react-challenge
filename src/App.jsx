@@ -3,7 +3,7 @@ import axios from "axios";
 import './App.css';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import renderThreeRows from './util/utility.js';
+import { renderThreeRows, filterData } from './util/utility.js';
 
 // api docs: https://randomuser.me/documentation
 
@@ -34,20 +34,12 @@ function App() {
       .catch(error => console.log(error))
   }, [])
 
-  const filterData = (data) => {
-    if (!!filter){
-      const newFilter = filteredData.filter(d => d.name.first.toLowerCase().includes(filter.toLowerCase()) || d.name.last.toLowerCase().includes(filter.toLowerCase()));
-      return newFilter;
-    }
-    return data;
-  }
-
   const handleFilter = (e) => {
     setFilter(e.target.value);
   }
 
   useEffect(() => {
-    const filtered = filterData(data) || [];
+    const filtered = filterData(data, filter) || [];
 
     if (sortDirection === "asc") {
       filtered.sort((a, b) => (new Date(a.registered.date) - new Date(b.registered.date)));
